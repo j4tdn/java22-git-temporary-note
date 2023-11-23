@@ -1,0 +1,154 @@
+
+	Local VCS
+	
+	Centralized VCS
+		--> SVN, Totoroise
+	
+	Distributed VCS
+		--> ALL is equals
+		--> version = hash(text) --> less memory
+		
+		--> Language: GIT
+	--------------------------
+	* Khi cần gộp 2 nhánh với nhánh
+	
+	1. Sử dụng lệnh merge
+	
+	
+	2. Sử dụng lệnh rebase
+		
+		
+	--------------------------	
+	* Câu hỏi
+	1. Nhánh mặc định main || master
+	2. Git Bash ko cho phép tiếp tục khi kết quả hiển thị quá dài
+	3. git commit thay vì git commit -m "message...."
+	
+	--------------------------
+	* Chú thích - Mô tả
+	1. VCS Demo
+	+ commit v1
+	+ commit v2
+	+ commit v3
+	
+	HEAD: là 1 con trỏ đặc biệt có thể trỏ đến nhánh(trỏ đến commit) hoặc commit
+	    : khi HEAD trỏ đến commit nào(trực tiếp hay gián tiếp thông qua nhánh) 
+		  --> thư mục làm việc sẽ hiện thị code, tài liệu ở commit đó
+		: HEAD có thể di chuyển đến bất kỳ commit, branch nào
+		
+		+ HEAD trỏ đến branch --> bình thường(khuyến khích)
+		+ HEAD trỏ đến commit --> trạng thái DETACHED HEAD (không khuyến khích)
+		  --> Vì khi đang ở detached head, nếu tạo commit mới thì HEAD nhảy lên nhưng quan trọng
+		  là commit đó ko được chứa/quản lý trong bất kỳ branch(nhánh) nào
+		  
+		  --> Nếu như mình gõ git log thậm chí với tham số -all nó cũng ko show ra
+	
+	master: là 1 nhánh(là 1 con trỏ trỏ đến commit)
+	      : ???
+		  
+	
+	GIT version                     = 1 commmit = 1 chức năng của dự án
+	GIT branch  = 1 project version = N commits = N chức năng của dự án
+	
+	Bắt đầu dự án --> chia dự án thành các phiên bản(project version)
+	
+	Mỗi phiên bản của dự án sẽ có nhiều chức năng(project task)
+	+ todo-app-1.0 --> 
+	+ todo-app-2.0 -->
+	
+	Mỗi chức năng(task) có thể được thực thi bởi 1 hoặc nhiều commit
+	
+	+ Khởi tạo dự án
+	
+	+ Bắt đầu 1 phiên bản nào của dự án --> tạo ra 1 branch đại diện cho phiên bản đó
+	
+	+ Khi làm 1 chức năng
+	  . Cần biết chức năng đó thuộc phiên bản nào của dự án --> branch thực hiện cho project version
+	  . Làm tiếp tục branch đó
+	
+	--------------------------
+	A. Linux command
+	
+	ls
+	touch a.txt b.txt c.txt
+	notepad a.txt
+	cat a.txt
+	
+	--------------------------
+	B Git command
+	
+	Để 1 folder, dự án được quản lý bởi GIT
+	Khởi tạo 1 kho chứa(repository, database) để lưu trữ các version
+	--> git init: khởi tạo kho chứa git repository
+	
+	--> git status: xem trạng thái các file
+	    + untracked: mới tạo ra, chỉnh sửa ... chưa được git quản lý, chưa commit lần nào
+		+ unmodified: file vừa mới commit
+		+ modified: chỉnh sửa 1 file đã từng được commit
+		  --> Changes not staged for commit
+		
+		+ staged: files được dùng để commit
+		  --> Changes for commit
+	
+	--> git add: đưa files từ untracked, modified vào --> staged
+	
+	--> git commit
+	    + Ai là người thực hiện chức năng
+		  --> git config --global user.name Le Teo
+		  --> git config --global user.email leteo@gmail.com
+		+ Thời gian thực hiện
+		+ Mô tả chức năng
+		
+		+ lưu các files ở trạng thái staged vào repository
+		+ commit hash
+		+ hashing cho các file
+		
+	--> git commit ^^^ hiện notepad
+    --> git commit -m "message" 	
+		Kết Quả: Tạo ra commit mới
+
+	--> git commit --amend ^^^ hiện notepad
+	--> git commit --amend -m "new message"
+	    Kết Quả: Ghi đè commit hiện tại(đổi mã hash)
+		  + đè nội dung
+		  + đè message
+		    --> nếu k muốn update message --> git commit --amend --no-edit
+	
+	--> git reset --hard HEAD~1
+		+ xóa commit, xóa luôn nội dung commit
+	
+	--> git reset --soft HEAD~1
+		+ xóa commit, giữ lại nội dung 
+		
+	--> git reflog
+	    + hiện thị lịch sử các commit mà HEAD từng đi qua(gián/trực tiếp)
+	
+	--> git log [--oneline] --all
+	    + xem lịch sử commit: gồm commit hiện tại và các commit cha của nó
+	    + --all: hiển thị tất cả commit được quản lý trong branch
+	
+	--> git ls-tree commit_hash
+	    + xem danh sách các blob của commit đó
+		+ xem commit đó có những file nào thay đổi so với commit trước
+	
+	--> git checkout commit_hash
+	    + đưa con trỏ HEAD đến commit_hash
+		+ thư mục làm việc(working directory) sẽ chứa code, tài liệu ở commit đó
+		
+	--> git commit --amend -m "new message"
+	    + sửa commit message hiện tại
+		
+	--> git branch new_branch
+		
+	--> git branch new_branch old_branch
+	    + tạo nhánh mới từ nhánh đã có
+		
+	--> git branch new_branch commit_hash
+	    + tạo nhánh mới từ commit hash đã có
+		
+	--> git checkout new_branch
+		+ chuyển head sang branch mới
+	
+	--> git checkout -b new_branch old_branch
+	    + tạo nhánh new_branch từ old_branch
+		+ đưa head sang new_branch

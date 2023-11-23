@@ -1,0 +1,61 @@
+---- Note for Todo App Local demo ----
+
+---- Giải lập: Chỉ sự dụng mặc định branch master, không sử dụng, tạo nhánh khác ----
+---- Liệu dự án chỉ có 1 branch duy nhất có làm được ko ----
+
+1. Khởi tạo kho chứa
+   --> git init
+
+2. Tạo template cho dự án
+   --> tạo file readme.txt
+   --> git add
+   --> git commit -m "Initial project"
+
+----------------------------------------------------------
+
+3. Bắt đầu phát triển 1 version của dự án: todo-app-1.0
+   --> tạo branch(todo-app-1.0) đại diện cho phiên bản todo-app-1.0
+   
+   * git branch ten_nhanh_moi commit_hash
+     --> git branch todo-app-1.0 0fd6424
+   * git branch ten_nhanh_moi ten_nhanh_cu
+     --> tạo ten_nhanh_moi từ cái commit mà ten_nhanh_cu đang trỏ đến
+     --> git branch todo-app-1.0 master	 
+   
+   --> đưa HEAD qua branch todo-app-1.0 rồi bắt đầu làm
+   --> Cập nhật version cho dự án --> readme.txt 
+   --> để biết các chức năng chuẩn bị làm cho version nào
+   --> rồi mới phát triển tính năng
+
+   A. Tạo 1 commit để update file readme sang version todo-app-1.0-snapshot
+      --- Bắt đầu làm chức năng ---
+   B. Tạo 1 commit cho chức năng tính tổng
+   C. Tạo 1 commit cho chức năng tính hiệu
+      --- Tester đã test xong dự án ---
+   D. Tạo 1 commit update file readme sang version todo-app-1.0(xóa chữ snapshot) để release(build dự án, đóng gói sản phẩm giao cho khách hàng) dự án
+
+   *** Bàn giao cho khách hàng test version todo-app-1.0 ***
+   --> Nếu có bug thì fix
+
+4. Bắt đầu phát triển tiếp version: todo-app-2.0
+   --> tạo branch(todo-app-2.0) đại diện cho phiên bản todo-app-2.0
+   --> khi nào bắt đầu làm chức năng cho  todo-app-2.0 thì đưa HEAD qua branch todo-app-2.0
+   
+   A. Tạo 1 commit để update file readme sang version todo-app-2.0-snapshot
+      --- Bắt đầu làm chức năng ---
+   B. Tạo 1 commit cho chức năng tính tích
+
+   *** Khách hàng gọi điện, mail báo về là version todo-app-1.0 có bug ***
+   --- VERSION 1.0: Có 100 chức năng, test passed 98 chức năng, còn 2 chức năng bị bug
+       Bug 1: Tràn số khi cộng
+       Bug 2: Tràn số khi trừ
+   *** Yêu cầu: Fix sớm trong 3 ngày để đưa ra sản phẩm ra thực tế(production) ***
+
+   + Tạo nhánh todo-app-1.1 từ code mới nhất của todo-app-1.0
+   + Đưa HEAD qua nhánh todo-app-1.1   
+
+
+
+   C. Tạo 1 commit cho chức năng tính thương
+      --- Tester đã test xong dự án ---
+   D. Tạo 1 commit update file readme sang version todo-app-2.0(xóa chữ snapshot) để release(build dự án, đóng gói sản phẩm giao cho khách hàng) dự án

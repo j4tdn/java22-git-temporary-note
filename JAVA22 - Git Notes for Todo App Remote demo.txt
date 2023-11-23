@@ -1,0 +1,89 @@
+---- Note for Todo App Local demo ----
+
+---- Giải lập: Chỉ sử dụng mặc định branch master, không sử dụng, tạo nhánh khác ----
+---- Liệu dự án chỉ có 1 branch duy nhất có làm được ko ----
+
+1. Tạo dự án, có tên dự án, structure của dự án --> java22-todo-app
+   --> Giải lập
+       --> Structure gồm: readme.txt [gitignore]
+   --> Trong thự mục chứa dự án, khởi tạo kho chứa(local)
+       --> git init
+	   --> git add, commit
+
+2. Tạo remote repository ở github, gitlab
+   --> Yêu cầu: tên remote repo nên trùng với tên dự án ở local
+   --> Tiến hành đẩy(push) code(dùng lệnh) từ local repo lên remote repo
+   --> Yêu cầu:
+       + Tài khoản(github) local đẩy được remote repo cần phải có permission
+	     permission:
+		   a. tài khoản chủ sở hữu của remote repo
+		   b. tài khoản được chủ sở hữu thêm vào
+		   
+		   GITHUB: username, password --> settings --> PAC(personal access token)
+		   PAC: string được sinh ra bởi github đại diện cho tài khoản của mình
+		      : thời hạn(... vĩnh viễn)
+		   Login: Thay vì nhập username, password 
+		          --> username, pac
+		   
+	   + Liên kết local repo với remote repo
+	       --> cú pháp: git remote add ten_dai_dien duong_dan_remote
+		   -->        : git remote add origin https://github.com/j4tdn/java22-todo-app
+		   --> để kiểm tra: git remote -v
+		   
+       + Push từ local branch lên remote branch
+	     . local branch: nhánh trên máy cục bộ
+		 . remote branch: nhánh ở trên kho chứa từ xa(github, gitlab)
+		 --> cú pháp: git push ten_dai_dien_remote ten_local_branch:ten_remote_branch
+		              git push origin master:master
+		     TH1: remote_branch chưa tồn tại
+			      --> tự động tạo ra remote_branch giống với tên nhánh trong lệnh push
+				  --> và nhánh mới tạo ra ở remote sẽ có đầy đủ commit y chang nhánh local đẩy lên
+			 TH2: remote_branch đã tồn tại
+----------------------------------------------------------
+
+3. Bắt đầu phát triển 1 version của dự án: todo-app-1.0
+   --> tạo branch(todo-app-1.0) đại diện cho phiên bản todo-app-1.0
+   
+   * git branch ten_nhanh_moi commit_hash
+     --> git branch todo-app-1.0 0fd6424
+   * git branch ten_nhanh_moi ten_nhanh_cu
+     --> tạo ten_nhanh_moi từ cái commit mà ten_nhanh_cu đang trỏ đến
+     --> git branch todo-app-1.0 master	 
+   
+   --> đưa HEAD qua branch todo-app-1.0 rồi bắt đầu làm
+   --> Cập nhật version cho dự án --> readme.txt 
+   --> để biết các chức năng chuẩn bị làm cho version nào
+   --> rồi mới phát triển tính năng
+
+   A. Tạo 1 commit để update file readme sang version todo-app-1.0-snapshot
+      --- Bắt đầu làm chức năng ---
+   B. Tạo 1 commit cho chức năng tính tổng
+   C. Tạo 1 commit cho chức năng tính hiệu
+      --- Tester đã test xong dự án ---
+   D. Tạo 1 commit update file readme sang version todo-app-1.0(xóa chữ snapshot) để release(build dự án, đóng gói sản phẩm giao cho khách hàng) dự án
+
+   *** Bàn giao cho khách hàng test version todo-app-1.0 ***
+   --> Nếu có bug thì fix
+
+4. Bắt đầu phát triển tiếp version: todo-app-2.0
+   --> tạo branch(todo-app-2.0) đại diện cho phiên bản todo-app-2.0
+   --> khi nào bắt đầu làm chức năng cho  todo-app-2.0 thì đưa HEAD qua branch todo-app-2.0
+   
+   A. Tạo 1 commit để update file readme sang version todo-app-2.0-snapshot
+      --- Bắt đầu làm chức năng ---
+   B. Tạo 1 commit cho chức năng tính tích
+
+   *** Khách hàng gọi điện, mail báo về là version todo-app-1.0 có bug ***
+   --- VERSION 1.0: Có 100 chức năng, test passed 98 chức năng, còn 2 chức năng bị bug
+       Bug 1: Tràn số khi cộng
+       Bug 2: Tràn số khi trừ
+   *** Yêu cầu: Fix sớm trong 3 ngày để đưa ra sản phẩm ra thực tế(production) ***
+
+   + Tạo nhánh todo-app-1.1 từ code mới nhất của todo-app-1.0
+   + Đưa HEAD qua nhánh todo-app-1.1   
+
+
+
+   C. Tạo 1 commit cho chức năng tính thương
+      --- Tester đã test xong dự án ---
+   D. Tạo 1 commit update file readme sang version todo-app-2.0(xóa chữ snapshot) để release(build dự án, đóng gói sản phẩm giao cho khách hàng) dự án
